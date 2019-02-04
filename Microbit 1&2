@@ -1,0 +1,27 @@
+#Microbit 1
+from microbit import *
+import radio
+radio.on()
+radio.config(channel = 4)
+radio.config(power=7)
+
+while True:
+  reading = accelerometer.get_z()
+  display.scroll(reading)
+  if reading > 200:
+    radio.send(‘micro’)
+
+
+#Microbit 2
+from microbit import *
+import radio
+import music
+radio.on()
+radio.config(channel = 4)
+radio.config(power=7)
+
+
+message = radio.receive()
+if message == 'micro':
+	music.play(music.DADADADUM)
+	display.scroll('INTRUDER ALERT!')
